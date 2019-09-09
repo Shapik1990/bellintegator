@@ -3,6 +3,8 @@ package ru.bellintegrator.practice.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
 public class Country {
@@ -11,8 +13,11 @@ public class Country {
     @Column(name = "code")
     private int code;
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 130, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "citizenshipCode")
+    private Set<User> users;
 
     public int getCode() {
         return code;

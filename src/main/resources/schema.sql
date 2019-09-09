@@ -20,6 +20,16 @@ CREATE TABLE IF NOT EXISTS Office (
     is_active           BOOLEAN     NOT NULL    COMMENT 'Активность офиса'
 );
 
+CREATE TABLE IF NOT EXISTS Doc (
+    code                INTEGER                  COMMENT 'Код документа' PRIMARY KEY,
+    name                VARCHAR(113) NOT NULL     COMMENT 'Название документа',
+);
+
+CREATE TABLE IF NOT EXISTS Country (
+    code                INTEGER                  COMMENT 'Код страны' PRIMARY KEY,
+    name                VARCHAR(130) NOT NULL     COMMENT 'Название страны',
+);
+
 CREATE TABLE IF NOT EXISTS User (
     id                  BIGINT                  COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT ,
     version             INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
@@ -28,27 +38,22 @@ CREATE TABLE IF NOT EXISTS User (
     middle_name         VARCHAR(25)             COMMENT 'Отчество',
     position            VARCHAR(30) NOT NULL    COMMENT 'Должность',
     phone               VARCHAR(12)             COMMENT 'Телефон',
-    doc_code            INTEGER                 COMMENT 'Код документа',
-    doc_name            VARCHAR(50)             COMMENT 'Название документа',
+    doc_code            INTEGER                 COMMENT 'Код документа' REFERENCES Doc(code),
     doc_number          BIGINT                  COMMENT 'Номер документа',
     doc_date            DATE                    COMMENT 'Дата выдачи документа',
-    citizenship_code    INTEGER                 COMMENT 'Код страны',
+    citizenship_code    INTEGER                 COMMENT 'Код страны'   REFERENCES Country(code),
     is_identified       BOOLEAN     NOT NULL    COMMENT 'Идентификация пользователя',
     office_id           BIGINT      NOT NULL    COMMENT 'ИД офиса клиента' REFERENCES Office(id)
 );
 
-CREATE TABLE IF NOT EXISTS Doc (
-    code                INTEGER                  COMMENT 'Код документа' PRIMARY KEY,
-    name                VARCHAR(50) NOT NULL     COMMENT 'Название документа',
-);
 
-CREATE TABLE IF NOT EXISTS Country (
-    code                INTEGER                  COMMENT 'Код страны' PRIMARY KEY,
-    name                VARCHAR(50) NOT NULL     COMMENT 'Название страны',
-);
 
 
 CREATE INDEX IX_Office_organization_id ON Office (organization_id);
 
-CREATE INDEX IX_User_office_id  ON User (office_id );
+CREATE INDEX IX_User_office_id  ON User (office_id);
+
+CREATE INDEX IX_User_doc_code  ON User (doc_code);
+
+CREATE INDEX IX_User_citizenship_code  ON User (citizenship_code);
 

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -37,12 +38,6 @@ public class User {
     @Column(length = 11)
     private String phone;
 
-    @Column(name = "doc_code")
-    private Integer docCode;
-
-    @Column(name = "doc_name", length = 50)
-    private String docName;
-
     @Column(name = "doc_number")
     private Long docNumber;
 
@@ -50,13 +45,18 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
-    @Column(name = "citizenship_code")
-    private Integer citizenshipCode;
-
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
 
     @ManyToOne
     @JoinColumn(name = "office_id")
     private Office officeId;
+
+    @ManyToOne
+    @JoinColumn(name = "doc_code")
+    private Doc docCode;
+
+    @ManyToOne
+    @JoinColumn(name = "citizenship_code")
+    private Country citizenshipCode;
 }

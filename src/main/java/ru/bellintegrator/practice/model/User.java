@@ -50,4 +50,92 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "citizenship_code")
     private Country citizenshipCode;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Boolean getIdentified() {
+        return isIdentified;
+    }
+
+    public void setIdentified(Boolean identified) {
+        isIdentified = identified;
+    }
+
+    public Office getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(Office officeId) {
+        this.officeId = officeId;
+    }
+
+    public Document getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(Document documentId) {
+        this.documentId = documentId;
+    }
+
+    public Country getCitizenshipCode() {
+        return citizenshipCode;
+    }
+
+    public void setCitizenshipCode(Country citizenshipCode) {
+        this.citizenshipCode = citizenshipCode;
+    }
 }

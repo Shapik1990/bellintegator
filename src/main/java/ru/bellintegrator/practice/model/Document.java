@@ -36,4 +36,52 @@ public class Document {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private User user;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Long getDocNumber() {
+        return docNumber;
+    }
+
+    public void setDocNumber(Long docNumber) {
+        this.docNumber = docNumber;
+    }
+
+    public Date getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate;
+    }
+
+    public DocType getDocCode() {
+        return docCode;
+    }
+
+    public void setDocCode(DocType docCode) {
+        this.docCode = docCode;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

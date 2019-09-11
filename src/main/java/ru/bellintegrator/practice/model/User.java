@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
-import java.util.Date;
+
 
 @Entity
 public class User {
@@ -38,23 +37,15 @@ public class User {
     @Column(length = 11)
     private String phone;
 
-    @Column(name = "doc_number")
-    private Long docNumber;
-
-    @Column(name = "doc_date")
-    @Temporal(TemporalType.DATE)
-    private Date docDate;
-
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
 
     @ManyToOne
-    @JoinColumn(name = "office_id")
+    @JoinColumn(name = "office_id", nullable = false)
     private Office officeId;
 
-    @ManyToOne
-    @JoinColumn(name = "doc_code")
-    private Doc docCode;
+    @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Document documentId;
 
     @ManyToOne
     @JoinColumn(name = "citizenship_code")

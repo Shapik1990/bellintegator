@@ -1,13 +1,16 @@
 package ru.bellintegrator.practice.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-public class Doc {
+@Table(name = "doc_type")
+public class DocType {
 
     @Id
     @Column(name = "code")
@@ -17,7 +20,7 @@ public class Doc {
     private String name;
 
     @OneToMany(mappedBy = "docCode")
-    private Set<User> users;
+    private Set<Document> documents;
 
     public int getCode() {
         return code;

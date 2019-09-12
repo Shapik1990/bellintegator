@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,10 @@ public class DocType {
 
     @Id
     @Column(name = "code")
-    private int code;
+    private Integer code;
+
+    @Version
+    private Integer version;
 
     @Column(name = "name", length = 113, nullable = false)
     private String name;
@@ -36,5 +40,21 @@ public class DocType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 }

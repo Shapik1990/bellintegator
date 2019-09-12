@@ -1,35 +1,35 @@
-INSERT INTO Doc_type (code, name) VALUES (03, 'Свидетельство о рождении ');
+INSERT INTO Doc_type (code, version, name) VALUES (03, 0, 'Свидетельство о рождении ');
 
-INSERT INTO Doc_type (code, name) VALUES (07, 'Военный билет');
+INSERT INTO Doc_type (code, version, name) VALUES (07, 0, 'Военный билет');
 
-INSERT INTO Doc_type (code, name) VALUES (08, 'Временное удостоверение, выданное взамен военного билета');
+INSERT INTO Doc_type (code, version, name) VALUES (08, 0, 'Временное удостоверение, выданное взамен военного билета');
 
-INSERT INTO Doc_type (code, name) VALUES (10, 'Паспорт иностранного гражданина');
+INSERT INTO Doc_type (code, version, name) VALUES (10, 0, 'Паспорт иностранного гражданина');
 
-INSERT INTO Doc_type (code, name) VALUES (11, 'Свидетельство о рассмотрении ходатайства о признании лица
+INSERT INTO Doc_type (code, version, name) VALUES (11, 0, 'Свидетельство о рассмотрении ходатайства о признании лица
 беженцем на территории Российской Федерации по существу');
 
-INSERT INTO Doc_type (code, name) VALUES (12, 'Вид на жительство в Российской Федерации');
+INSERT INTO Doc_type (code, version, name) VALUES (12, 0, 'Вид на жительство в Российской Федерации');
 
-INSERT INTO Doc_type (code, name) VALUES (13, 'Удостоверение беженца');
+INSERT INTO Doc_type (code, version, name) VALUES (13, 0, 'Удостоверение беженца');
 
-INSERT INTO Doc_type (code, name) VALUES (15, 'Разрешение на временное проживание в Российской Федерации');
+INSERT INTO Doc_type (code, version, name) VALUES (15, 0, 'Разрешение на временное проживание в Российской Федерации');
 
-INSERT INTO Doc_type (code, name) VALUES (18, 'Свидетельство о предоставлении временного убежища на территории
+INSERT INTO Doc_type (code, version, name) VALUES (18, 0, 'Свидетельство о предоставлении временного убежища на территории
 Российской Федерации');
 
-INSERT INTO Doc_type (code, name) VALUES (21, 'Паспорт гражданина РФ');
+INSERT INTO Doc_type (code, version, name) VALUES (21, 0, 'Паспорт гражданина РФ');
 
-INSERT INTO Doc_type (code, name) VALUES (23, 'Свидетельство о рождении, выданное уполномоченным органом
+INSERT INTO Doc_type (code, version, name) VALUES (23, 0, 'Свидетельство о рождении, выданное уполномоченным органом
 иностранного государства');
 
-INSERT INTO Doc_type (code, name) VALUES (24, 'Удостоверение личности военнослужащего Российской Федерации');
+INSERT INTO Doc_type (code, version, name) VALUES (24, 0, 'Удостоверение личности военнослужащего Российской Федерации');
 
-INSERT INTO Doc_type (code, name) VALUES (91, 'Иные документы');
+INSERT INTO Doc_type (code, version, name) VALUES (91, 0, 'Иные документы');
 
-INSERT INTO Country (code, name) VALUES (643, 'Российская Федерация');
+INSERT INTO Country (code, version, name) VALUES (643, 0, 'Российская Федерация');
 
-INSERT INTO Country (code, name) VALUES (050, 'Народная Республика Бангладеш');
+INSERT INTO Country (code, version, name) VALUES (050, 0, 'Народная Республика Бангладеш');
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active)
             VALUES (1, 0, 'Газпром', 'ООО Газпром', 1234567890, 123456789, 'ул.Цюрупы, 16', true);

@@ -35,13 +35,12 @@ public class Office {
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
-    @OneToMany(mappedBy = "officeId",cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "officeId",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<User> userSet;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     private Organization orgId;
-
 
     public Integer getId() {
         return id;

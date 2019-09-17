@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,14 +41,14 @@ public class User {
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id", nullable = false)
     private Office officeId;
 
     @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
     private Document documentId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "citizenship_code")
     private Country citizenshipCode;
 

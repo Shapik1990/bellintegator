@@ -29,7 +29,7 @@ public class Document {
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_code")
     private DocType docCode;
 

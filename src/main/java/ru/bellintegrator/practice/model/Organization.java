@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
 import java.util.Set;
 
 @Entity
@@ -28,10 +27,10 @@ public class Organization {
     @Column(name = "full_name", length = 50, nullable = false)
     private String fullName;
 
-    @Column(length = 10, nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private Long inn;
 
-    @Column(nullable = false, length = 9)
+    @Column(nullable = false)
     private int kpp;
 
     @Column(length = 50, nullable = false)
@@ -43,7 +42,7 @@ public class Organization {
     @Column(name = "is_active",nullable = false)
     private boolean isActive;
 
-    @OneToMany(mappedBy = "orgId", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orgId", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Office> officeSet;
 
     public Integer getId() {

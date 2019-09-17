@@ -20,9 +20,6 @@ public class Country {
     @Column(name = "name", length = 130, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "citizenshipCode")
-    private Set<User> users;
-
     public int getCode() {
         return code;
     }
@@ -45,13 +42,5 @@ public class Country {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 }

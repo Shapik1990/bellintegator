@@ -3,21 +3,31 @@ package ru.bellintegrator.practice.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Version;
-import java.util.Set;
 
+/**
+ * Справочная таблица с кодами и названиями стран
+ */
 @Entity
 public class Country {
 
+    /**
+     * Международный код страны, он же является первичным ключом таблицы
+     */
     @Id
     @Column(name = "code")
     private Integer code;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
-    @Column(name = "name", length = 130, nullable = false)
+    /**
+     * Название страны
+     */
+    @Column(length = 130, nullable = false)
     private String name;
 
     public int getCode() {

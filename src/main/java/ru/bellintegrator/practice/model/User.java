@@ -16,38 +16,71 @@ import javax.persistence.Version;
 @Entity
 public class User {
 
+    /**
+     * Первичный ключ
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Имя пользователя
+     */
     @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 
+    /**
+     * Фамилия пользователя
+     */
     @Column(name = "second_name", length = 35)
     private String secondName;
 
+    /**
+     * Отчество пользователя
+     */
     @Column(name = "middle_name", length = 25)
     private String middleName;
 
+    /**
+     * Должность пользователя
+     */
     @Column(length = 30, nullable = false)
     private String position;
 
+    /**
+     * Телефон пользователя
+     */
     @Column(length = 11)
     private String phone;
 
+    /**
+     * Идентификация пользователя
+     */
     @Column(name = "is_identified", nullable = false)
     private Boolean isIdentified;
 
+    /**
+     * Офис к которому прикреплен клиент, внешний ключ на теблицу {@link Office}
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id", nullable = false)
     private Office officeId;
 
-    @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
+    /**
+     * Документ клиента
+     */
+    @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Document documentId;
 
+    /**
+     * Код страны клиента, внешний ключ на таблицу {@link Country}
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "citizenship_code")
     private Country citizenshipCode;

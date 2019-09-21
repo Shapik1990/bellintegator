@@ -13,26 +13,45 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import java.util.Date;
 
+/**
+ * Документ пользователя
+ */
 @Entity
 public class Document {
 
     @Id
     private Integer id;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Номер документа
+     */
     @Column(name = "doc_number")
     private Long docNumber;
 
+    /**
+     * Дата выдачи документа
+     */
     @Column(name = "doc_date")
     @Temporal(TemporalType.DATE)
     private Date docDate;
 
+    /**
+     * Код документа, внешний ключ на таблицу {@link DocType}
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_code")
     private DocType docCode;
 
+    /**
+     * Первичный ключ, совпадает с первичным ключом пользователя,
+     * которому принадлежит документ в таблице {@link User}
+     */
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private User user;

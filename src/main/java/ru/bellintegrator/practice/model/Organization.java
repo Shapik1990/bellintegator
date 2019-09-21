@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,35 +14,64 @@ import java.util.Set;
 @Entity
 public class Organization {
 
+    /**
+     * Первичный ключ
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Короткое название организации
+     */
     @Column(length = 30,nullable = false)
     private String name;
 
+    /**
+     * Полное название организации
+     */
     @Column(name = "full_name", length = 50, nullable = false)
     private String fullName;
 
+    /**
+     * ИНН организации
+     */
     @Column(nullable = false, unique = true)
     private Long inn;
 
+    /**
+     * КПП организации
+     */
     @Column(nullable = false)
     private int kpp;
 
+    /**
+     * Адрес организации
+     */
     @Column(length = 50, nullable = false)
     private String address;
 
+    /**
+     * Телефон организации
+     */
     @Column(length = 11)
     private String phone;
 
+    /**
+     * Активность организации
+     */
     @Column(name = "is_active",nullable = false)
     private boolean isActive;
 
+    /**
+     * Офисы принадлежащие организации
+     */
     @OneToMany(mappedBy = "orgId", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Office> officeSet;
 
@@ -124,4 +154,5 @@ public class Organization {
     public void setOfficeSet(Set<Office> officeSet) {
         this.officeSet = officeSet;
     }
+
 }

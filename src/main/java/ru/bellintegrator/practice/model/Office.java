@@ -16,28 +16,52 @@ import java.util.Set;
 @Entity
 public class Office {
 
+    /**
+     * Первичный ключ
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
+    /**
+     * Название офиса
+     */
     @Column(length = 20)
     private String name;
 
+    /**
+     * Адрес офиса
+     */
     @Column(length = 50)
     private String address;
 
+    /**
+     * Телефон офиса
+     */
     @Column(length = 11)
     private String phone;
 
+    /**
+     * Активность офиса
+     */
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
+    /**
+     * Пользователи, которые прикреплены к офису
+     */
     @OneToMany(mappedBy = "officeId",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<User> userSet;
 
+    /**
+     * Организации которой принадлежит офис, внешний ключ на таблицу {@link Organization}
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     private Organization orgId;

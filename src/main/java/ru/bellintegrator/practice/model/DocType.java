@@ -7,18 +7,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+/**
+ * Справочная таблица с кодами и названиями документов РФ
+ */
 @Entity
 @Table(name = "doc_type")
 public class DocType {
 
+    /**
+     * Код документа, он же является первичным ключом таблицы
+     */
     @Id
     @Column(name = "code")
     private Integer code;
 
+    /**
+     * Служебное поле Hibernate
+     */
     @Version
     private Integer version;
 
-    @Column(name = "name", length = 113, nullable = false)
+    /**
+     * Название документа
+     */
+    @Column(length = 113, nullable = false)
     private String name;
 
 

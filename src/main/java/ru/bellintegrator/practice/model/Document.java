@@ -31,8 +31,8 @@ public class Document {
     /**
      * Номер документа
      */
-    @Column(name = "doc_number")
-    private Long docNumber;
+    @Column(name = "doc_number", length = 20)
+    private String docNumber;
 
     /**
      * Дата выдачи документа
@@ -72,11 +72,11 @@ public class Document {
         this.version = version;
     }
 
-    public Long getDocNumber() {
+    public String getDocNumber() {
         return docNumber;
     }
 
-    public void setDocNumber(Long docNumber) {
+    public void setDocNumber(String docNumber) {
         this.docNumber = docNumber;
     }
 
@@ -103,5 +103,4 @@ public class Document {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

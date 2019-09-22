@@ -2,7 +2,7 @@ package ru.bellintegrator.practice.view;
 
 
 import com.fasterxml.jackson.annotation.JsonView;
-import ru.bellintegrator.practice.transfer.ShowDto;
+import ru.bellintegrator.practice.validation.ShowDto;
 
 @JsonView(ShowDto.class)
 public class DataResponseView<T> {

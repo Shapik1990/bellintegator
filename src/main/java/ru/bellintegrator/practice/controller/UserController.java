@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.dto.UserDto;
 import ru.bellintegrator.practice.service.user.UserService;
-import ru.bellintegrator.practice.transfer.DtoByFilter;
-import ru.bellintegrator.practice.transfer.DtoSave;
-import ru.bellintegrator.practice.transfer.DtoUpdate;
-import ru.bellintegrator.practice.transfer.ShowDto;
-import ru.bellintegrator.practice.transfer.ShowDtoFull;
+import ru.bellintegrator.practice.validation.DtoByFilter;
+import ru.bellintegrator.practice.validation.DtoSave;
+import ru.bellintegrator.practice.validation.DtoUpdate;
+import ru.bellintegrator.practice.validation.ShowDto;
+import ru.bellintegrator.practice.validation.ShowDtoFull;
 import ru.bellintegrator.practice.view.DataResponseView;
 import ru.bellintegrator.practice.view.SuccessResponceView;
 

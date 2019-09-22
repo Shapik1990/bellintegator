@@ -2,11 +2,11 @@ package ru.bellintegrator.practice.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import ru.bellintegrator.practice.model.Office;
-import ru.bellintegrator.practice.transfer.DtoByFilter;
-import ru.bellintegrator.practice.transfer.DtoSave;
-import ru.bellintegrator.practice.transfer.DtoUpdate;
-import ru.bellintegrator.practice.transfer.ShowDto;
-import ru.bellintegrator.practice.transfer.ShowDtoFull;
+import ru.bellintegrator.practice.validation.DtoByFilter;
+import ru.bellintegrator.practice.validation.DtoSave;
+import ru.bellintegrator.practice.validation.DtoUpdate;
+import ru.bellintegrator.practice.validation.ShowDto;
+import ru.bellintegrator.practice.validation.ShowDtoFull;
 
 import javax.validation.constraints.NotNull;
 

@@ -32,13 +32,13 @@ INSERT INTO Country (code, version, name) VALUES (643, 0, 'Российская 
 INSERT INTO Country (code, version, name) VALUES (050, 0, 'Народная Республика Бангладеш');
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active)
-            VALUES (1, 0, 'Газпром', 'ООО Газпром', 1234567890, 123456789, 'ул.Цюрупы, 16', true);
+            VALUES (1, 0, 'Газпром', 'ООО Газпром', '1234567890', '123456789', 'ул.Цюрупы, 16', true);
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, phone, is_active)
-            VALUES (2, 0, 'Роснефть', 'ООО Роснефть', 1334567890, 123456789, 'ул.Лунина, 7', '+74951234567', true);
+            VALUES (2, 0, 'Роснефть', 'ООО Роснефть', '1334567890', '123456789', 'ул.Лунина, 7', '+74951234567', true);
 
 INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, is_active)
-            VALUES (3, 0, 'РЖД', 'ООО Российские Железные дороги', 1234599890, 123456789, 'ул.Цюрупы, 22', false);
+            VALUES (3, 0, 'РЖД', 'ООО Российские Железные дороги', '1234599890', '123456789', 'ул.Цюрупы, 22', false);
 
 INSERT INTO Office (id, version, organization_id, name, is_active) VALUES (1, 0, 1, 'Офис газпрома', true);
 
@@ -59,7 +59,7 @@ INSERT INTO User (id, version, first_name, phone, citizenship_code, position, is
 INSERT INTO User (id, version, first_name, position, is_identified, office_id)
             VALUES (4, 0, 'Александр', 'Клининг менеджер', true, 2);
 
-INSERT INTO Document (user_id, version, doc_code, doc_number, doc_date) VALUES (3, 0, 03, 1234567890, '2007-10-15');
+INSERT INTO Document (user_id, version, doc_code, doc_number, doc_date) VALUES (3, 0, 03, '1234567890', '2007-10-15');
 
 INSERT INTO Document (user_id, version, doc_code) VALUES (1, 0, 10);
 

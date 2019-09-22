@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.transfer;
+package ru.bellintegrator.practice.validation;
 
 public interface ShowDtoFull extends ShowDto {
 }

@@ -3,11 +3,11 @@ package ru.bellintegrator.practice.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import ru.bellintegrator.practice.model.User;
-import ru.bellintegrator.practice.transfer.DtoByFilter;
-import ru.bellintegrator.practice.transfer.DtoSave;
-import ru.bellintegrator.practice.transfer.DtoUpdate;
-import ru.bellintegrator.practice.transfer.ShowDto;
-import ru.bellintegrator.practice.transfer.ShowDtoFull;
+import ru.bellintegrator.practice.validation.DtoByFilter;
+import ru.bellintegrator.practice.validation.DtoSave;
+import ru.bellintegrator.practice.validation.DtoUpdate;
+import ru.bellintegrator.practice.validation.ShowDto;
+import ru.bellintegrator.practice.validation.ShowDtoFull;
 
 import javax.validation.constraints.NotNull;
 
@@ -38,7 +38,7 @@ public class UserDto {
     private String docName;
 
     @JsonView(ShowDtoFull.class)
-    private Long docNumber;
+    private String docNumber;
 
     @JsonView(ShowDtoFull.class)
     private String docDate;
@@ -133,11 +133,11 @@ public class UserDto {
         this.docName = docName;
     }
 
-    public Long getDocNumber() {
+    public String getDocNumber() {
         return docNumber;
     }
 
-    public void setDocNumber(Long docNumber) {
+    public void setDocNumber(String docNumber) {
         this.docNumber = docNumber;
     }
 

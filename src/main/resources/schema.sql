@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS Organization (
     version     INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
     name        VARCHAR(30) NOT NULL    COMMENT 'Название организации',
     full_name   VARCHAR(50) NOT NULL    COMMENT 'Полное название оранизации',
-    inn         BIGINT      NOT NULL    COMMENT 'ИНН',
-    kpp         INTEGER     NOT NULL    COMMENT 'КПП',
+    inn         VARCHAR(11) NOT NULL    COMMENT 'ИНН',
+    kpp         VARCHAR(9)  NOT NULL    COMMENT 'КПП',
     address     VARCHAR(50) NOT NULL    COMMENT 'Адрес организации',
     phone       VARCHAR(12)             COMMENT 'Телефон организации',
     is_active   BOOLEAN     NOT NULL    COMMENT 'Активность организации'
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Document(
     user_id             INTEGER                 COMMENT 'ID документа совпадающий с ID юзера' PRIMARY KEY REFERENCES User(id),
     version             INTEGER     NOT NULL    COMMENT 'Служебное поле hibernate',
     doc_code            INTEGER                 COMMENT 'Код документа' REFERENCES Doc_type(code),
-    doc_number          BIGINT                  COMMENT 'Номер документа',
+    doc_number          VARCHAR(20)             COMMENT 'Номер документа',
     doc_date            DATE                    COMMENT 'Дата выдачи документа',
 );
 

@@ -42,14 +42,14 @@ public class Organization {
     /**
      * ИНН организации
      */
-    @Column(nullable = false, unique = true)
-    private Long inn;
+    @Column(nullable = false, unique = true, length = 10)
+    private String inn;
 
     /**
      * КПП организации
      */
-    @Column(nullable = false)
-    private int kpp;
+    @Column(nullable = false, length = 9)
+    private String kpp;
 
     /**
      * Адрес организации
@@ -107,19 +107,19 @@ public class Organization {
         this.fullName = fullName;
     }
 
-    public Long getInn() {
+    public String getInn() {
         return inn;
     }
 
-    public void setInn(Long inn) {
+    public void setInn(String inn) {
         this.inn = inn;
     }
 
-    public int getKpp() {
+    public String getKpp() {
         return kpp;
     }
 
-    public void setKpp(int kpp) {
+    public void setKpp(String kpp) {
         this.kpp = kpp;
     }
 

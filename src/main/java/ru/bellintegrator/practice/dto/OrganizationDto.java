@@ -2,11 +2,11 @@ package ru.bellintegrator.practice.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import ru.bellintegrator.practice.model.Organization;
-import ru.bellintegrator.practice.transfer.DtoByFilter;
-import ru.bellintegrator.practice.transfer.DtoSave;
-import ru.bellintegrator.practice.transfer.DtoUpdate;
-import ru.bellintegrator.practice.transfer.ShowDto;
-import ru.bellintegrator.practice.transfer.ShowDtoFull;
+import ru.bellintegrator.practice.validation.DtoByFilter;
+import ru.bellintegrator.practice.validation.DtoSave;
+import ru.bellintegrator.practice.validation.DtoUpdate;
+import ru.bellintegrator.practice.validation.ShowDto;
+import ru.bellintegrator.practice.validation.ShowDtoFull;
 
 import javax.validation.constraints.NotNull;
 
@@ -26,11 +26,11 @@ public class OrganizationDto {
 
     @JsonView(ShowDtoFull.class)
     @NotNull(groups = {DtoSave.class, DtoUpdate.class})
-    private Long inn;
+    private String inn;
 
     @JsonView(ShowDtoFull.class)
     @NotNull(groups = {DtoSave.class, DtoUpdate.class})
-    private int kpp;
+    private String kpp;
 
     @JsonView(ShowDtoFull.class)
     @NotNull(groups = {DtoSave.class, DtoUpdate.class})
@@ -80,19 +80,19 @@ public class OrganizationDto {
         this.fullName = fullName;
     }
 
-    public Long getInn() {
+    public String getInn() {
         return inn;
     }
 
-    public void setInn(Long inn) {
+    public void setInn(String inn) {
         this.inn = inn;
     }
 
-    public int getKpp() {
+    public String getKpp() {
         return kpp;
     }
 
-    public void setKpp(int kpp) {
+    public void setKpp(String kpp) {
         this.kpp = kpp;
     }
 

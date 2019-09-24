@@ -19,12 +19,12 @@ public class OfficeServiceImpl implements OfficeService {
     }
 
     @Override
-    public DataResponseView<OfficeDto> getOfficesListByFilter(OfficeDto officeDto) {
+    public DataResponseView getOfficesListByFilter(OfficeDto officeDto) {
         return null;
     }
 
     @Override
-    public DataResponseView<OfficeDto> getOfficeById(int id) {
+    public DataResponseView getOfficeById(int id) {
         return null;
     }
 }

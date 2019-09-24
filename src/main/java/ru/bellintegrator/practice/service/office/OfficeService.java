@@ -10,7 +10,7 @@ public interface OfficeService {
 
     SuccessResponceView save(OfficeDto officeDto);
 
-    DataResponseView<OfficeDto> getOfficesListByFilter(OfficeDto officeDto);
+    DataResponseView getOfficesListByFilter(OfficeDto officeDto);
 
-    DataResponseView<OfficeDto> getOfficeById(int id);
+    DataResponseView getOfficeById(int id);
 }

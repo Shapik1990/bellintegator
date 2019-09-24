@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ru.bellintegrator.practice.validation.ShowDto;
 
 @JsonView(ShowDto.class)
-public class DataResponseView<T> {
+public class DataResponseView {
 
-    private T data;
+    private Object data;
 
-    public DataResponseView(T data) {
+    public DataResponseView(Object data) {
         this.data = data;
     }
 
-    public T getData() {
+    public Object getData() {
         return data;
     }
 }

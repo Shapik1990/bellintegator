@@ -15,7 +15,7 @@ public class UserDto {
 
     @JsonView(ShowDto.class)
     @NotNull(groups = {DtoByFilter.class, DtoUpdate.class})
-    private int id;
+    private Integer id;
 
     @JsonView(ShowDto.class)
     @NotNull(groups = {DtoSave.class, DtoUpdate.class})
@@ -50,10 +50,10 @@ public class UserDto {
     private Integer citizenshipCode;
 
     @JsonView(ShowDtoFull.class)
-    private boolean isIdentified;
+    private Boolean isIdentified;
 
-    @NotNull(groups = DtoSave.class)
-    private int officeId;
+    @NotNull(groups = {DtoByFilter.class, DtoSave.class})
+    private Integer officeId;
 
     public UserDto() {
     }
@@ -77,11 +77,11 @@ public class UserDto {
         this.isIdentified = user.getIdentified();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -165,19 +165,19 @@ public class UserDto {
         this.citizenshipCode = citizenshipCode;
     }
 
-    public boolean isIdentified() {
+    public Boolean isIdentified() {
         return isIdentified;
     }
 
-    public void setIdentified(boolean identified) {
+    public void setIdentified(Boolean identified) {
         isIdentified = identified;
     }
 
-    public int getOfficeId() {
+    public Integer getOfficeId() {
         return officeId;
     }
 
-    public void setOfficeId(int officeId) {
+    public void setOfficeId(Integer officeId) {
         this.officeId = officeId;
     }
 }

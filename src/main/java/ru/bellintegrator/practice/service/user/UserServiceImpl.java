@@ -9,12 +9,12 @@ import ru.bellintegrator.practice.view.SuccessResponceView;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public DataResponseView<UserDto> getUsersListByFilter(UserDto userDto) {
+    public DataResponseView getUsersListByFilter(UserDto userDto) {
         return null;
     }
 
     @Override
-    public DataResponseView<UserDto> getUserById(int id) {
+    public DataResponseView getUserById(int id) {
         return null;
     }
 

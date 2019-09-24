@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class OfficeDto {
 
     @JsonView(ShowDto.class)
-    @NotNull(groups = {DtoByFilter.class, DtoUpdate.class})
+    @NotNull(groups = DtoUpdate.class)
     private Integer id;
 
     @JsonView(ShowDto.class)
@@ -28,9 +28,9 @@ public class OfficeDto {
     private String phone;
 
     @JsonView(ShowDto.class)
-    private boolean isActive;
+    private Boolean isActive;
 
-    @NotNull(groups = DtoSave.class)
+    @NotNull(groups = {DtoByFilter.class, DtoSave.class})
     private Integer orgId;
 
     public OfficeDto() {
@@ -76,11 +76,11 @@ public class OfficeDto {
         this.phone = phone;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 

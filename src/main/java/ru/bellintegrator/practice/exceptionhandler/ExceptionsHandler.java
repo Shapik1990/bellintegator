@@ -4,9 +4,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import ru.bellintegrator.practice.exception.NotEntityException;
 import ru.bellintegrator.practice.view.ErrorResponseView;
 
 @RestControllerAdvice
@@ -25,6 +27,11 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
         }
 
         return new ResponseEntity<>(new ErrorResponseView("Ошибка валидации :" + sb.toString()),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotEntityException.class)
+    protected ResponseEntity<Object> handleNotEntity (RuntimeException ex) {
+        return new ResponseEntity<>(new ErrorResponseView(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 
 }

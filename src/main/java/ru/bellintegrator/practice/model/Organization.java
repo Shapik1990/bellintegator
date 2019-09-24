@@ -42,7 +42,7 @@ public class Organization {
     /**
      * ИНН организации
      */
-    @Column(nullable = false, unique = true, length = 10)
+    @Column(nullable = false, length = 10)
     private String inn;
 
     /**

@@ -1,4 +1,4 @@
-INSERT INTO Doc_type (code, version, name) VALUES (03, 0, 'Свидетельство о рождении ');
+INSERT INTO Doc_type (code, version, name) VALUES (03, 0, 'Свидетельство о рождении');
 
 INSERT INTO Doc_type (code, version, name) VALUES (07, 0, 'Военный билет');
 

@@ -59,11 +59,11 @@ INSERT INTO User (id, version, first_name, phone, citizenship_code, position, is
 INSERT INTO User (id, version, first_name, position, is_identified, office_id)
             VALUES (4, 0, 'Александр', 'Клининг менеджер', true, 2);
 
-INSERT INTO Document (user_id, version, doc_code, doc_number, doc_date) VALUES (3, 0, 03, '1234567890', '2007-10-15');
+INSERT INTO User_document (user_id, version, doc_code, doc_number, doc_date) VALUES (3, 0, 03, '1234567890', '2007-10-15');
 
-INSERT INTO Document (user_id, version, doc_code) VALUES (1, 0, 10);
+INSERT INTO User_document (user_id, version, doc_code) VALUES (1, 0, 10);
 
-INSERT INTO Document (user_id, version, doc_code) VALUES (4, 0, 13);
+INSERT INTO User_document (user_id, version, doc_code) VALUES (4, 0, 13);
 
 
 

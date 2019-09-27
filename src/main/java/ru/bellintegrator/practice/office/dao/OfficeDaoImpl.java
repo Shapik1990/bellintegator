@@ -22,11 +22,17 @@ public class OfficeDaoImpl implements OfficeDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office loadById(Integer id) {
         return em.find(Office.class, id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Office> listByFilter(int orgId, String name, String phone, Boolean active) {
         List<Predicate> predicates = new ArrayList<>();

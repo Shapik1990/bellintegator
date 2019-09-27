@@ -35,13 +35,13 @@ public class UserController {
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
     public DataResponseView getUsersList(@Validated(DtoByFilter.class) @RequestBody UserDto userDto){
-        return userService.getUsersListByFilter(userDto);
+        return new DataResponseView(userService.getUsersListByFilter(userDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
     public DataResponseView getUserById(@PathVariable int id) {
-        return userService.getUserById(id);
+        return new DataResponseView(userService.getUserById(id));
     }
 
     @PostMapping(value = "/update")

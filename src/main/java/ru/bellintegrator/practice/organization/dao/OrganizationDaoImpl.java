@@ -22,16 +22,25 @@ public class OrganizationDaoImpl implements OrganizationDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Organization loadById(Integer id) {
         return em.find(Organization.class, id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void save(Organization organization) {
         em.persist(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<Organization> listByFilter(String name, String inn, Boolean active) {
         List<Predicate> predicates = new ArrayList<>();

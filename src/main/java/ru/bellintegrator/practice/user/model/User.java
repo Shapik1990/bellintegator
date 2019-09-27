@@ -66,7 +66,7 @@ public class User {
      * Идентификация пользователя
      */
     @Column(name = "is_identified", nullable = false)
-    private Boolean isIdentified;
+    private boolean isIdentified;
 
     /**
      * Офис к которому прикреплен клиент, внешний ключ на теблицу {@link Office}
@@ -79,7 +79,7 @@ public class User {
      * Документ клиента
      */
     @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Document documentId;
+    private UserDocument documentId;
 
     /**
      * Код страны клиента, внешний ключ на таблицу {@link Country}
@@ -160,11 +160,11 @@ public class User {
         this.officeId = officeId;
     }
 
-    public Document getDocumentId() {
+    public UserDocument getDocumentId() {
         return documentId;
     }
 
-    public void setDocumentId(Document documentId) {
+    public void setDocumentId(UserDocument documentId) {
         this.documentId = documentId;
     }
 

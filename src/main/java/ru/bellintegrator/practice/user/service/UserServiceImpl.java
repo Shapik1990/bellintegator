@@ -9,13 +9,12 @@ import ru.bellintegrator.practice.exception.DocumentDataValidationException;
 import ru.bellintegrator.practice.exception.NotEntityException;
 import ru.bellintegrator.practice.country.model.Country;
 import ru.bellintegrator.practice.doctype.model.DocType;
-import ru.bellintegrator.practice.user.model.Document;
+import ru.bellintegrator.practice.user.model.UserDocument;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.user.dao.UserDao;
 import ru.bellintegrator.practice.user.dto.UserDto;
-import ru.bellintegrator.practice.view.DataResponseView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +36,12 @@ public class UserServiceImpl implements UserService {
         this.docTypeDao = docTypeDao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DataResponseView getUsersListByFilter(UserDto userDto) {
+    @Transactional
+    public List<UserDto> getUsersListByFilter(UserDto userDto) {
         List<User> userList = userDao.listByFilter(userDto.getOfficeId(), userDto.getFirstName(), userDto.getSecondName(),
                 userDto.getMiddleName(), userDto.getPosition(), userDto.getDocCode(), userDto.getCitizenshipCode());
 
@@ -52,22 +55,30 @@ public class UserServiceImpl implements UserService {
             dtoList.add(new UserDto(user));
         }
 
-        return new DataResponseView(dtoList);
+        return dtoList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DataResponseView getUserById(int id) {
+    @Transactional
+    public UserDto getUserById(int id) {
         User user = userDao.loadById(id);
 
-        if (user != null){
-            return new DataResponseView(new UserDto(user));
+        if (user == null){
+            throw new NotEntityException("Не найден пользователь с id " + id);
+
         }
 
-        throw new NotEntityException("Не найден пользователь с id " + id);
+        return new UserDto(user);
     }
 
-    @Transactional
+    /**
+     * {@inheritDoc}
+     */
     @Override
+    @Transactional
     public void update(UserDto userDto) {
         User user = userDao.loadById(userDto.getId());
         if (user == null){
@@ -82,8 +93,11 @@ public class UserServiceImpl implements UserService {
         transform(user, userDto);
     }
 
-    @Transactional
+    /**
+     * {@inheritDoc}
+     */
     @Override
+    @Transactional
     public void save(UserDto userDto) {
         Office office = officeDao.loadById(userDto.getOfficeId());
 
@@ -162,9 +176,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private void addDocumentToUser (User user, UserDto userDto, DocType docType){
-        Document document = null;
+        UserDocument document = null;
         if (user.getDocumentId() == null){
-            document = new Document();
+            document = new UserDocument();
             document.setUser(user);
             user.setDocumentId(document);
         }

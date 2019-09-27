@@ -9,7 +9,6 @@ import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.dto.OfficeDto;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
-import ru.bellintegrator.practice.view.DataResponseView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +25,11 @@ public class OfficeServiceImpl implements OfficeService {
         this.organizationDao = organizationDao;
     }
 
-    @Transactional
+    /**
+     *{@inheritDoc}
+     */
     @Override
+    @Transactional
     public void update(OfficeDto officeDto) {
         Office office = officeDao.loadById(officeDto.getId());
 
@@ -38,8 +40,11 @@ public class OfficeServiceImpl implements OfficeService {
         transform(officeDto, office);
     }
 
-    @Transactional
+    /**
+     *{@inheritDoc}
+     */
     @Override
+    @Transactional
     public void save(OfficeDto officeDto) {
         Organization organization = organizationDao.loadById(officeDto.getOrgId());
         Office office = new Office();
@@ -54,8 +59,12 @@ public class OfficeServiceImpl implements OfficeService {
 
     }
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
-    public DataResponseView getOfficesListByFilter(OfficeDto officeDto) {
+    @Transactional
+    public List<OfficeDto> getOfficesListByFilter(OfficeDto officeDto) {
         List<Office> officeList = officeDao.listByFilter(officeDto.getOrgId(),officeDto.getName(), officeDto.getPhone(), officeDto.isActive());
 
         if (officeList.isEmpty()){
@@ -68,18 +77,22 @@ public class OfficeServiceImpl implements OfficeService {
             dtoList.add(new OfficeDto(office));
         }
 
-        return new DataResponseView(dtoList);
+        return dtoList;
     }
 
+    /**
+     *{@inheritDoc}
+     */
     @Override
-    public DataResponseView getOfficeById(int id) {
+    @Transactional
+    public OfficeDto getOfficeById(int id) {
         Office office = officeDao.loadById(id);
 
         if (office == null){
             throw new NotEntityException("Не найден офис с id" + id);
         }
 
-        return new DataResponseView(new OfficeDto(office));
+        return new OfficeDto(office);
     }
 
     private void transform(OfficeDto officeDto, Office office) {

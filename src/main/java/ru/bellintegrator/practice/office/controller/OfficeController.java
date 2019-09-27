@@ -35,13 +35,13 @@ public class OfficeController {
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
     public DataResponseView getOfficeList(@Validated(DtoByFilter.class) @RequestBody OfficeDto officeDto){
-        return officeService.getOfficesListByFilter(officeDto);
+        return new DataResponseView(officeService.getOfficesListByFilter(officeDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
     public DataResponseView  getOfficenById(@PathVariable int id) {
-        return officeService.getOfficeById(id);
+        return new DataResponseView(officeService.getOfficeById(id));
     }
 
     @PostMapping(value = "/update")

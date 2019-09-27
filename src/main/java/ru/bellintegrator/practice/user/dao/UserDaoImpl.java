@@ -22,11 +22,17 @@ public class UserDaoImpl implements UserDao {
         this.em = em;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User loadById(int id) {
         return em.find(User.class, id);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<User> listByFilter(Integer officeId, String firstName, String secondName, String middleName, String position, Integer docCode, Integer citizenshipCode) {
         List<Predicate> predicates = new ArrayList<>();

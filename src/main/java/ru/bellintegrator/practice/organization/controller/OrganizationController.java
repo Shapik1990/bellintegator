@@ -35,13 +35,13 @@ public class OrganizationController {
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
     public DataResponseView getOrganizationsList(@Validated (DtoByFilter.class) @RequestBody OrganizationDto organizationDto){
-        return organizationService.getOrganizationsListByFilter(organizationDto);
+        return new DataResponseView(organizationService.getOrganizationsListByFilter(organizationDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
     public DataResponseView getOrganizationById(@PathVariable int id) {
-        return organizationService.getOrganizationById(id);
+        return new DataResponseView(organizationService.getOrganizationById(id));
     }
 
     @PostMapping(value = "/update")

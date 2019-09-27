@@ -7,7 +7,6 @@ import ru.bellintegrator.practice.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.exception.NotEntityException;
 import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.dto.OrganizationDto;
-import ru.bellintegrator.practice.view.DataResponseView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,9 @@ public class OrganizationServiceImpl implements OrganizationService{
         this.dao = dao;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void update(OrganizationDto organizationDto) {
@@ -35,19 +37,27 @@ public class OrganizationServiceImpl implements OrganizationService{
         transform(organization, organizationDto);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DataResponseView getOrganizationById(Integer id) {
+    @Transactional
+    public OrganizationDto getOrganizationById(Integer id) {
         Organization organization = dao.loadById(id);
 
         if (organization == null) {
             throw new NotEntityException("Не найдена организация с id " + id);
         }
 
-        return new DataResponseView(new OrganizationDto(organization));
+        return new OrganizationDto(organization);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DataResponseView getOrganizationsListByFilter(OrganizationDto organizationDto) {
+    @Transactional
+    public List<OrganizationDto> getOrganizationsListByFilter(OrganizationDto organizationDto) {
         List<Organization> organizationList = dao.listByFilter(organizationDto.getName(), organizationDto.getInn(), organizationDto.isActive());
 
         if (organizationList.isEmpty()){
@@ -60,9 +70,12 @@ public class OrganizationServiceImpl implements OrganizationService{
             dtoList.add(new OrganizationDto(org));
         }
 
-        return new DataResponseView(dtoList);
+        return dtoList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     @Transactional
     public void save(OrganizationDto organizationDto) {

@@ -19,8 +19,8 @@ import java.util.Date;
 /**
  * Документ пользователя
  */
-@Entity
-public class Document {
+@Entity(name = "user_document")
+public class UserDocument {
 
     @Id
     private Integer id;

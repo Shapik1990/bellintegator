@@ -5,6 +5,9 @@ public class ErrorResponseView {
 
     private String error;
 
+    public ErrorResponseView() {
+    }
+
     public ErrorResponseView(String error) {
         this.error = error;
     }

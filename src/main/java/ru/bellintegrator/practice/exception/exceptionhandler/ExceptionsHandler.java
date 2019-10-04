@@ -35,4 +35,9 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ErrorResponseView(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleException(Exception ex) {
+        return new ResponseEntity<>(new ErrorResponseView(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

@@ -18,7 +18,9 @@ import ru.bellintegrator.practice.validation.DtoUpdate;
 import ru.bellintegrator.practice.validation.ShowDto;
 import ru.bellintegrator.practice.validation.ShowDtoFull;
 import ru.bellintegrator.practice.view.DataResponseView;
-import ru.bellintegrator.practice.view.SuccessResponceView;
+import ru.bellintegrator.practice.view.SuccessResponseView;
+
+import java.util.List;
 
 
 @RestController
@@ -34,25 +36,25 @@ public class UserController {
 
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
-    public DataResponseView getUsersList(@Validated(DtoByFilter.class) @RequestBody UserDto userDto){
-        return new DataResponseView(userService.getUsersListByFilter(userDto));
+    public DataResponseView<List<UserDto>> getUsersList(@Validated(DtoByFilter.class) @RequestBody UserDto userDto){
+        return new DataResponseView<List<UserDto>>(userService.getUsersListByFilter(userDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
-    public DataResponseView getUserById(@PathVariable int id) {
-        return new DataResponseView(userService.getUserById(id));
+    public DataResponseView<UserDto> getUserById(@PathVariable int id) {
+        return new DataResponseView<UserDto>(userService.getUserById(id));
     }
 
     @PostMapping(value = "/update")
-    public SuccessResponceView updateUser(@Validated (DtoUpdate.class) @RequestBody UserDto userDto) {
+    public SuccessResponseView updateUser(@Validated (DtoUpdate.class) @RequestBody UserDto userDto) {
         userService.update(userDto);
-        return new SuccessResponceView(true);
+        return new SuccessResponseView();
     }
 
     @PostMapping(value = "/save")
-    public SuccessResponceView saveUser(@Validated (DtoSave.class) @RequestBody UserDto userDto){
+    public SuccessResponseView saveUser(@Validated (DtoSave.class) @RequestBody UserDto userDto){
         userService.save(userDto);
-        return new SuccessResponceView(true);
+        return new SuccessResponseView();
     }
 }

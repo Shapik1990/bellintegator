@@ -18,7 +18,9 @@ import ru.bellintegrator.practice.validation.DtoUpdate;
 import ru.bellintegrator.practice.validation.ShowDto;
 import ru.bellintegrator.practice.validation.ShowDtoFull;
 import ru.bellintegrator.practice.view.DataResponseView;
-import ru.bellintegrator.practice.view.SuccessResponceView;
+import ru.bellintegrator.practice.view.SuccessResponseView;
+
+import java.util.List;
 
 
 @RestController
@@ -34,25 +36,25 @@ public class OrganizationController {
 
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
-    public DataResponseView getOrganizationsList(@Validated (DtoByFilter.class) @RequestBody OrganizationDto organizationDto){
-        return new DataResponseView(organizationService.getOrganizationsListByFilter(organizationDto));
+    public DataResponseView<List<OrganizationDto>> getOrganizationsList(@Validated (DtoByFilter.class) @RequestBody OrganizationDto organizationDto){
+        return new DataResponseView<List<OrganizationDto>>(organizationService.getOrganizationsListByFilter(organizationDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
-    public DataResponseView getOrganizationById(@PathVariable int id) {
-        return new DataResponseView(organizationService.getOrganizationById(id));
+    public DataResponseView<OrganizationDto> getOrganizationById(@PathVariable int id) {
+        return new DataResponseView<OrganizationDto>(organizationService.getOrganizationById(id));
     }
 
     @PostMapping(value = "/update")
-    public SuccessResponceView updateOrganization(@Validated (DtoUpdate.class) @RequestBody OrganizationDto organizationDto) {
+    public DataResponseView<Boolean> updateOrganization(@Validated (DtoUpdate.class) @RequestBody OrganizationDto organizationDto) {
         organizationService.update(organizationDto);
-        return new SuccessResponceView(true);
+        return new DataResponseView<Boolean>(true);
     }
 
     @PostMapping(value = "/save")
-    public SuccessResponceView saveOrganization(@Validated (DtoSave.class) @RequestBody OrganizationDto organizationDto){
+    public SuccessResponseView saveOrganization(@Validated (DtoSave.class) @RequestBody OrganizationDto organizationDto){
         organizationService.save(organizationDto);
-        return new SuccessResponceView(true);
+        return new SuccessResponseView();
     }
 }

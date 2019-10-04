@@ -18,7 +18,9 @@ import ru.bellintegrator.practice.validation.DtoUpdate;
 import ru.bellintegrator.practice.validation.ShowDto;
 import ru.bellintegrator.practice.validation.ShowDtoFull;
 import ru.bellintegrator.practice.view.DataResponseView;
-import ru.bellintegrator.practice.view.SuccessResponceView;
+import ru.bellintegrator.practice.view.SuccessResponseView;
+
+import java.util.List;
 
 
 @RestController
@@ -34,25 +36,25 @@ public class OfficeController {
 
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
-    public DataResponseView getOfficeList(@Validated(DtoByFilter.class) @RequestBody OfficeDto officeDto){
-        return new DataResponseView(officeService.getOfficesListByFilter(officeDto));
+    public DataResponseView<List<OfficeDto>> getOfficeList(@Validated(DtoByFilter.class) @RequestBody OfficeDto officeDto){
+        return new DataResponseView<List<OfficeDto>>(officeService.getOfficesListByFilter(officeDto));
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
-    public DataResponseView  getOfficenById(@PathVariable int id) {
-        return new DataResponseView(officeService.getOfficeById(id));
+    public DataResponseView<OfficeDto>  getOfficenById(@PathVariable int id) {
+        return new DataResponseView<OfficeDto>(officeService.getOfficeById(id));
     }
 
     @PostMapping(value = "/update")
-    public SuccessResponceView updateOffice(@Validated (DtoUpdate.class) @RequestBody OfficeDto officeDto) {
+    public SuccessResponseView updateOffice(@Validated (DtoUpdate.class) @RequestBody OfficeDto officeDto) {
         officeService.update(officeDto);
-        return new SuccessResponceView(true);
+        return new SuccessResponseView();
     }
 
     @PostMapping(value = "/save")
-    public SuccessResponceView saveOffice(@Validated (DtoSave.class) @RequestBody OfficeDto officeDto){
+    public SuccessResponseView saveOffice(@Validated (DtoSave.class) @RequestBody OfficeDto officeDto){
         officeService.save(officeDto);
-        return new SuccessResponceView(true);
+        return new SuccessResponseView();
     }
 }

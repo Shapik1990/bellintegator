@@ -10,10 +10,11 @@ import ru.bellintegrator.practice.validation.ShowDtoFull;
 
 import javax.validation.constraints.NotNull;
 
+
 public class OrganizationDto {
 
     @JsonView(ShowDto.class)
-    @NotNull(groups = { DtoUpdate.class})
+    @NotNull(groups = DtoUpdate.class)
     private Integer id;
 
     @JsonView(ShowDto.class)

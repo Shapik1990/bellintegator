@@ -12,7 +12,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.bellintegrator.practice.Application;
 import ru.bellintegrator.practice.organization.dto.OrganizationDto;
 import ru.bellintegrator.practice.view.DataResponseView;
 import ru.bellintegrator.practice.view.ErrorResponseView;
@@ -21,7 +20,7 @@ import ru.bellintegrator.practice.view.SuccessResponseView;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class OrganizationControllerTest {
 
     @Autowired
@@ -29,14 +28,14 @@ public class OrganizationControllerTest {
 
     @Test
     public void getOrganizationByIdTest() {
-        int id = 1;
+        Integer id = 1;
 
         ResponseEntity<DataResponseView<OrganizationDto>> responseEntity = testRestTemplate.exchange("/organization/" + id,
                 HttpMethod.GET, null, new ParameterizedTypeReference<DataResponseView<OrganizationDto>>(){});
 
         Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         Assert.assertNotNull(responseEntity.getBody());
-        Assert.assertEquals(responseEntity.getBody().getData().getId(), new Integer(1));
+        Assert.assertEquals(responseEntity.getBody().getData().getId(), id);
     }
 
     @Test
@@ -45,11 +44,12 @@ public class OrganizationControllerTest {
         String errorNotEntity = "Не найдена организация с id " + id;
 
         ResponseEntity<ErrorResponseView> responseNotEntityById = testRestTemplate.getForEntity("/organization/" + id, ErrorResponseView.class);
-        ResponseEntity<ErrorResponseView> responseEntityWrongId = testRestTemplate.getForEntity("/organization/fdf", ErrorResponseView.class);
 
         Assert.assertNotNull(responseNotEntityById.getBody());
         Assert.assertEquals(responseNotEntityById.getStatusCode(), HttpStatus.NOT_FOUND);
         Assert.assertEquals(responseNotEntityById.getBody().getError(), errorNotEntity);
+
+        ResponseEntity<ErrorResponseView> responseEntityWrongId = testRestTemplate.getForEntity("/organization/fdf", ErrorResponseView.class);
 
         Assert.assertEquals(responseEntityWrongId.getStatusCode(), HttpStatus.NOT_FOUND);
         Assert.assertEquals(responseEntityWrongId.getBody().getError(), "Not Found");
@@ -79,13 +79,13 @@ public class OrganizationControllerTest {
 
         ResponseEntity<ErrorResponseView> responseEntityValidated = testRestTemplate.postForEntity("/organization/list", dto, ErrorResponseView.class);
 
-        dto.setName("Газпро");
-
-        ResponseEntity<ErrorResponseView> responseNotEntityByFilter = testRestTemplate.postForEntity("/organization/list", dto, ErrorResponseView.class);
-
         Assert.assertEquals(responseEntityValidated.getStatusCode(), HttpStatus.BAD_REQUEST);
         Assert.assertNotNull(responseEntityValidated.getBody());
         Assert.assertEquals(responseEntityValidated.getBody().getError(), errorValidated);
+
+        dto.setName("Газпро");
+
+        ResponseEntity<ErrorResponseView> responseNotEntityByFilter = testRestTemplate.postForEntity("/organization/list", dto, ErrorResponseView.class);
 
         Assert.assertEquals(responseNotEntityByFilter.getStatusCode(), HttpStatus.NOT_FOUND);
         Assert.assertNotNull(responseNotEntityByFilter.getBody());

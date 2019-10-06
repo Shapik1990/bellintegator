@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     public void update(UserDto userDto) {
         User user = userDao.loadById(userDto.getId());
         if (user == null){
-            throw new NotEntityException("Не найден пользователь с id" + userDto.getId());
+            throw new NotEntityException("Не найден пользователь с id " + userDto.getId());
         }
 
         if ((user.getDocumentId() == null && userDto.getDocCode() == null && userDto.getDocName() == null) && (userDto.getDocDate() != null ||

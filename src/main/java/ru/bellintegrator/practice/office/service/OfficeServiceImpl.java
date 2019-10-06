@@ -89,7 +89,7 @@ public class OfficeServiceImpl implements OfficeService {
         Office office = officeDao.loadById(id);
 
         if (office == null){
-            throw new NotEntityException("Не найден офис с id" + id);
+            throw new NotEntityException("Не найден офис с id " + id);
         }
 
         return new OfficeDto(office);

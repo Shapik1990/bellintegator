@@ -17,7 +17,6 @@ import ru.bellintegrator.practice.validation.DtoSave;
 import ru.bellintegrator.practice.validation.DtoUpdate;
 import ru.bellintegrator.practice.validation.ShowDto;
 import ru.bellintegrator.practice.validation.ShowDtoFull;
-import ru.bellintegrator.practice.view.DataResponseView;
 import ru.bellintegrator.practice.view.SuccessResponseView;
 
 import java.util.List;
@@ -36,14 +35,14 @@ public class OfficeController {
 
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
-    public DataResponseView<List<OfficeDto>> getOfficeList(@Validated(DtoByFilter.class) @RequestBody OfficeDto officeDto){
-        return new DataResponseView<List<OfficeDto>>(officeService.getOfficesListByFilter(officeDto));
+    public List<OfficeDto> getOfficeList(@Validated(DtoByFilter.class) @RequestBody OfficeDto officeDto){
+        return officeService.getOfficesListByFilter(officeDto);
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
-    public DataResponseView<OfficeDto>  getOfficenById(@PathVariable int id) {
-        return new DataResponseView<OfficeDto>(officeService.getOfficeById(id));
+    public OfficeDto getOfficenById(@PathVariable int id) {
+        return officeService.getOfficeById(id);
     }
 
     @PostMapping(value = "/update")

@@ -17,7 +17,6 @@ import ru.bellintegrator.practice.validation.DtoSave;
 import ru.bellintegrator.practice.validation.DtoUpdate;
 import ru.bellintegrator.practice.validation.ShowDto;
 import ru.bellintegrator.practice.validation.ShowDtoFull;
-import ru.bellintegrator.practice.view.DataResponseView;
 import ru.bellintegrator.practice.view.SuccessResponseView;
 
 import java.util.List;
@@ -36,20 +35,20 @@ public class OrganizationController {
 
     @JsonView(ShowDto.class)
     @PostMapping(value = "/list" )
-    public DataResponseView<List<OrganizationDto>> getOrganizationsList(@Validated (DtoByFilter.class) @RequestBody OrganizationDto organizationDto){
-        return new DataResponseView<List<OrganizationDto>>(organizationService.getOrganizationsListByFilter(organizationDto));
+    public List<OrganizationDto> getOrganizationsList(@Validated (DtoByFilter.class) @RequestBody OrganizationDto organizationDto){
+        return organizationService.getOrganizationsListByFilter(organizationDto);
     }
 
     @JsonView(ShowDtoFull.class)
     @GetMapping(value = "/{id:\\d+}")
-    public DataResponseView<OrganizationDto> getOrganizationById(@PathVariable int id) {
-        return new DataResponseView<OrganizationDto>(organizationService.getOrganizationById(id));
+    public OrganizationDto getOrganizationById(@PathVariable int id) {
+        return organizationService.getOrganizationById(id);
     }
 
     @PostMapping(value = "/update")
-    public DataResponseView<Boolean> updateOrganization(@Validated (DtoUpdate.class) @RequestBody OrganizationDto organizationDto) {
+    public SuccessResponseView updateOrganization(@Validated (DtoUpdate.class) @RequestBody OrganizationDto organizationDto) {
         organizationService.update(organizationDto);
-        return new DataResponseView<Boolean>(true);
+        return new SuccessResponseView();
     }
 
     @PostMapping(value = "/save")

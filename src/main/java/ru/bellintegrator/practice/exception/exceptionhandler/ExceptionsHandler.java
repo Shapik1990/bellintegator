@@ -39,5 +39,4 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleException(Exception ex) {
         return new ResponseEntity<>(new ErrorResponseView(ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }

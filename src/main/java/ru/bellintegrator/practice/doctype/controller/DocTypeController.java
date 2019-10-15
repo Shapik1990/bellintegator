@@ -5,8 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bellintegrator.practice.doctype.dto.DocTypeDto;
 import ru.bellintegrator.practice.doctype.service.DocTypeService;
-import ru.bellintegrator.practice.view.DataResponseView;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/docs", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -20,7 +22,7 @@ public class DocTypeController {
     }
 
     @GetMapping
-    public DataResponseView getAllDocsType (){
-        return new DataResponseView(service.getAllDocTypes());
+    public List<DocTypeDto> getAllDocsType (){
+        return service.getAllDocTypes();
     }
 }

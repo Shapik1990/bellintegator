@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bellintegrator.practice.country.dto.CountryDto;
 import ru.bellintegrator.practice.country.service.CountryService;
-import ru.bellintegrator.practice.view.DataResponseView;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/countries")
@@ -19,7 +21,7 @@ public class CountryController {
     }
 
     @GetMapping
-    public DataResponseView getAllCounties(){
-        return new DataResponseView(service.getAllCountries());
+    public List<CountryDto> getAllCounties(){
+        return service.getAllCountries();
     }
 }

@@ -10,6 +10,7 @@ import ru.bellintegrator.practice.organization.dto.OrganizationDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -64,11 +65,15 @@ public class OrganizationServiceImpl implements OrganizationService{
             throw new NotEntityException("Не найдены организации с указанными параметрами");
         }
 
-        List<OrganizationDto> dtoList = new ArrayList<>();
+//        List<OrganizationDto> dtoList = new ArrayList<>();
+//
+//        for (Organization org : organizationList){
+//            dtoList.add(new OrganizationDto(org));
+//        }
 
-        for (Organization org : organizationList){
-            dtoList.add(new OrganizationDto(org));
-        }
+        List<OrganizationDto> dtoList = organizationList.stream().
+                map(x -> new OrganizationDto(x)).
+                collect(Collectors.toList());
 
         return dtoList;
     }
